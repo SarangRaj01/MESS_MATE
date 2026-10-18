@@ -1,4 +1,4 @@
-::: {align="center"}
+
 # 🍽️ MessMate
 
 ### AI-Powered Mess Calorie & Nutrition Tracker
