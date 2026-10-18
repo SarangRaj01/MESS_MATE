@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-cozy: #FAF7F2;
+    --bg-surface: #FFFFFF;
+    --bg-muted: #F3EFE6;
+    --border-cozy: #E8E2D5;
+    --border-subtle: #EFEAE0;
+    --fox-terracotta: #C85A32;
+    --fox-rust: #D9653B;
+    --fox-light: #FCEFE9;
+    --text-primary: #221F1D;
+    --text-muted: #6E675F;
+    --text-subtle: #948C82;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #FAF7F2;
+    color: #221F1D;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  /* Cozy subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FAF7F2;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D8D0C2;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #BEB4A4;
+  }
+}
+
+.cozy-card {
+  background: #FFFFFF;
+  border: 1px solid #E8E2D5;
+  box-shadow: 0 2px 12px -2px rgba(45, 35, 25, 0.04), 0 1px 3px rgba(45, 35, 25, 0.02);
+}
+
+.cozy-card:hover {
+  border-color: #D6CEBE;
+  box-shadow: 0 4px 18px -3px rgba(45, 35, 25, 0.07), 0 2px 6px rgba(45, 35, 25, 0.03);
+}
+
+.cozy-card-warm {
+  background: #FDFBF7;
+  border: 1px solid #EAE3D6;
+}
+
+.text-terracotta {
+  color: #C85A32;
+}
+
+.bg-terracotta {
+  background-color: #C85A32;
+}
+
+.bg-terracotta-soft {
+  background-color: #FAF0EB;
+}
