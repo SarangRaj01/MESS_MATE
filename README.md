@@ -1,145 +1,345 @@
-# MessMate — AI-Powered Mess Calorie & Nutrition Tracker (VIT Vellore)
+::: {align="center"}
+# 🍽️ MessMate
 
-> **A premium, mobile-first fitness and nutrition tracking web application built specifically for college students dining at VIT Vellore messes.**
+### AI-Powered Mess Calorie & Nutrition Tracker
 
----
+**A nutrition tracker designed around real college-mess meals at VIT
+Vellore.**
 
-## 🌟 Overview & Key Capabilities
+Track calories, understand your macros, review previous days, and make
+more informed food choices---all in one responsive web app.
 
-**MessMate** solves the daily challenge of tracking calorie and macronutrient intake for college hostel students. Rather than relying on generic western food databases, MessMate is founded directly on **actual mess menus served at VIT Vellore**, with accurate Indian portion sizes, verified meal timings, and standardized ICMR-NIN (National Institute of Nutrition) food composition data.
+`<br/>`{=html}
 
-### Core Features
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind
+CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+:::
 
-1. **Date-Specific Real Mess Menus**:
-   - Menus for dates including **October 12, 19, 20, 21, 22, 23, 24, and 25** extracted with authentic VIT Vellore timings:
-     - **Breakfast**: 7:30 AM – 9:30 AM (7:00 AM – 9:00 AM on Sunday Special Feast days)
-     - **Lunch**: 12:30 PM – 2:30 PM
-     - **Evening Snacks**: 4:30 PM – 6:15 PM
-     - **Dinner**: 7:00 PM – 9:00 PM
-   - Interactive Menu Manager allows manual additions and edits for any future dates without fabricating unseen menus.
+------------------------------------------------------------------------
 
-2. **Top Priority Live Calorie-Remaining Bar**:
-   - Prominent hero budget card updating in real time as items or portions are adjusted.
-   - Shows **Daily Calorie Target**, **Calories Consumed**, and **Calories Remaining** or **Target Exceeded Overage**.
-   - Dual visualization: Horizontal animated fill bar (clamped to 100%) and circular SVG progress ring gauge.
-   - Non-shaming, constructive badge when budget is exceeded.
+## 📌 Table of Contents
 
-3. **Macronutrient Tracking**:
-   - Real-time animated tracking for **Protein**, **Carbohydrates**, **Fats**, and **Dietary Fibre**.
-   - Energy contribution breakdown (% kcal from protein, carbs, and fat).
-   - Dynamic protein target based on body weight and fitness goal (1.2–2.0g/kg).
+-   [Why MessMate?](#-why-messmate)
+-   [Features](#-features)
+-   [Tech Stack](#-tech-stack)
+-   [Project Structure](#-project-structure)
+-   [Getting Started](#-getting-started)
+-   [Available Scripts](#-available-scripts)
+-   [How Nutrition Targets Work](#-how-nutrition-targets-work)
+-   [Data Storage and Backup](#-data-storage-and-backup)
+-   [Testing](#-testing)
+-   [Roadmap](#-roadmap)
+-   [Disclaimer](#-disclaimer)
 
-4. **Personalized BMR & Maintenance Calorie Calculator**:
-   - Clinically validated **Mifflin–St Jeor** equation:
-     $$\text{BMR}_{\text{male}} = 10 \times \text{weight (kg)} + 6.25 \times \text{height (cm)} - 5 \times \text{age} + 5$$
-     $$\text{BMR}_{\text{female}} = 10 \times \text{weight (kg)} + 6.25 \times \text{height (cm)} - 5 \times \text{age} - 161$$
-   - Total Daily Energy Expenditure (TDEE): $\text{Maintenance} = \text{BMR} \times \text{Activity Factor}$.
-   - Personalized target suggestions:
-     - **Maintain Weight**: 100% of TDEE
-     - **Healthy Fat Loss**: ~15% deficit (with safety floor capping at 1200 kcal for females, 1500 kcal for males, and pediatric guidance for minors)
-     - **Weight Gain**: ~10% surplus
-     - **Build Muscle**: ~6% surplus with high protein
-     - **Custom Target**: Manual calorie and protein target input.
+## 🌟 Why MessMate?
 
-5. **100% Persistent Data Storage (IndexedDB + LocalStorage Sync)**:
-   - Full structured storage across browser refreshes and restarts using `idb`.
-   - Snapshots historical targets and nutrient unit costs when a meal is logged, ensuring that editing the food library or updating today's target never silently modifies past records.
+Generic calorie trackers can be inconvenient when your meals come from a
+college mess. MessMate is designed around that everyday reality:
+familiar Indian foods, mess-specific meal timings, portion-aware
+logging, and a quick view of how your intake compares with your daily
+target.
 
-6. **Calendar-Based History & Analytics**:
-   - Interactive calendar grid distinguishing confirmed logged days from unlogged days.
-   - Recharts visual graphs: Daily calories vs target line, daily protein intake trend, and periodic weight logging.
-   - 1-click interactive chart navigation: clicking any bar navigates straight into that day's log.
+The goal is to make nutrition tracking **practical, understandable, and
+consistent**---without treating food choices as a pass-or-fail score.
 
-7. **Smart Mess Swaps & Insights**:
-   - Actionable comparisons tailored to VIT mess foods (e.g. 3 Phulkas vs 2 Pooris, White Channa Sundal vs Mysore Bonda).
-   - High-protein mess champions ranking.
+## ✨ Features
 
-8. **Export, Backup & Restore**:
-   - 1-click CSV spreadsheet export.
-   - Complete JSON database backup and restoration with duplicate prevention.
+### 🍛 1. Mess Menus and Meal Logging
 
----
+-   Date-specific VIT Vellore mess menus for the dates currently
+    included in the project data.
+-   Separate meal periods for breakfast, lunch, evening snacks, and
+    dinner.
+-   Add foods from a searchable food library and adjust portions.
+-   Manually add or edit menu entries for future dates.
+-   Avoids presenting an unprovided menu as verified data.
 
-## 🛠️ Tech Stack
+### 🔥 2. Daily Calorie Budget
 
-- **Framework**: React 19 + TypeScript
-- **Bundler & Tooling**: Vite 8
-- **Styling**: Tailwind CSS v4 (with dark aesthetic design system: deep charcoal, warm amber, and spiced orange gradients)
-- **Animation**: Framer Motion
-- **Icons**: Lucide React
-- **Data Visualization**: Recharts
-- **Database**: IndexedDB (`idb` v8) with synchronous fallback
-- **Testing**: Vitest
+-   Displays the daily calorie target, calories consumed, and calories
+    remaining.
+-   Updates the progress bar and circular progress indicator as food
+    portions change.
+-   Shows when the daily target has been exceeded without shaming the
+    user.
+-   Keeps the calorie summary visible as a central part of the
+    dashboard.
 
----
+### 🥗 3. Macronutrient Tracking
+
+Track the main macronutrients (nutrients that provide energy):
+
+-   **Protein**
+-   **Carbohydrates**
+-   **Fat**
+-   **Dietary fibre**
+
+The app visualizes nutrient totals and the estimated share of energy
+from protein, carbohydrates, and fat.
+
+### ⚖️ 4. Personalized Calorie Targets
+
+The onboarding calculator estimates:
+
+-   **BMR (Basal Metabolic Rate):** the energy your body uses at rest.
+-   **TDEE (Total Daily Energy Expenditure):** estimated daily energy
+    use after accounting for activity.
+-   Suggested targets for maintaining weight, fat loss, weight gain, or
+    muscle building.
+-   A custom calorie target and protein goal.
+
+Estimates use the Mifflin--St Jeor equation and an activity factor. They
+are estimates---not medical measurements.
+
+### 📅 5. History and Analytics
+
+-   Calendar view to distinguish days with logged meals from days
+    without logs.
+-   Historical daily calorie intake compared with the target.
+-   Protein-intake trends and periodic weight entries.
+-   Select a chart to open the corresponding day's food log.
+-   Historical entries retain the target and nutrient values captured
+    when the meal was logged, so later changes to current settings do
+    not silently rewrite the past.
+
+### 💡 6. Food Insights and Mess Swaps
+
+-   Compare common mess-food choices and portions.
+-   Highlight foods that can help increase protein intake.
+-   Explore practical alternatives using the foods available in the
+    app's library.
+
+Nutrition values depend on ingredients, preparation, and serving size;
+comparisons should be treated as estimates.
+
+### 💾 7. Local Persistence, Export, and Restore
+
+-   Stores app data in the browser using IndexedDB, with a fallback
+    mechanism.
+-   Keeps data available across refreshes and browser restarts on the
+    same browser profile.
+-   Export records to CSV for spreadsheet analysis.
+-   Back up and restore application data through JSON.
+-   Includes duplicate-prevention handling during restoration.
+
+**Important:** Browser-local data is not automatically synced across
+devices or browsers. Clearing site data or changing browsers may remove
+access to locally stored records. Export backups regularly.
+
+## 🧰 Tech Stack
+
+  -----------------------------------------------------------------------
+  Area                    Technology              Purpose
+  ----------------------- ----------------------- -----------------------
+  UI                      React 19                Component-based user
+                                                  interface
+
+  Language                TypeScript              Type checking and safer
+                                                  refactoring
+
+  Build tool              Vite 8                  Local development
+                                                  server and production
+                                                  build
+
+  Styling                 Tailwind CSS 4          Responsive styling and
+                                                  design utilities
+
+  Animation               Framer Motion           Interface transitions
+                                                  and motion
+
+  Icons                   Lucide React            Consistent interface
+                                                  icons
+
+  Charts                  Recharts                Nutrition and weight
+                                                  visualizations
+
+  Local database          IndexedDB via `idb`     Persistent browser-side
+                                                  structured data
+
+  Testing                 Vitest                  Automated tests
+  -----------------------------------------------------------------------
+
+## 🗂️ Project Structure
+
+``` text
+messmate/
+├── src/
+│   ├── components/
+│   │   ├── AddFoodModal.tsx
+│   │   ├── AnalyticsView.tsx
+│   │   ├── AppLayout.tsx
+│   │   ├── BackupRestoreView.tsx
+│   │   ├── CalorieBudgetCard.tsx
+│   │   ├── DateNavigator.tsx
+│   │   ├── DashboardView.tsx
+│   │   ├── FoodDatabaseView.tsx
+│   │   ├── FoodInsightsView.tsx
+│   │   ├── HistoryView.tsx
+│   │   ├── MacronutrientBreakdown.tsx
+│   │   ├── MealCard.tsx
+│   │   ├── OnboardingModal.tsx
+│   │   └── TodayMenuView.tsx
+│   ├── context/
+│   │   └── AppContext.tsx
+│   ├── data/
+│   │   ├── foodDatabase.ts
+│   │   └── messMenus.ts
+│   ├── services/
+│   │   ├── dataIntegrity.test.ts
+│   │   ├── nutritionCalculations.ts
+│   │   ├── nutritionCalculations.test.ts
+│   │   └── persistenceService.ts
+│   ├── types/
+│   │   └── index.ts
+│   ├── App.tsx
+│   ├── index.css
+│   └── main.tsx
+├── package.json
+└── vite.config.ts
+```
+
+*The tree reflects the project structure documented for the current
+version. File names may change as the application evolves.*
 
 ## 🚀 Getting Started
 
-### 1. Installation
+### Prerequisites
 
-```bash
+Install a current version of **Node.js** (which includes npm, the
+JavaScript package manager). Verify the installation:
+
+``` bash
+node --version
+npm --version
+```
+
+### 1. Open the project folder
+
+In PowerShell, move into the project directory. Replace the example path
+if your folder is stored elsewhere:
+
+``` powershell
 cd "C:\Users\SARANG RAJ\.gemini\antigravity\scratch\messmate"
+```
+
+### 2. Install dependencies
+
+``` bash
 npm install
 ```
 
-### 2. Start Development Server
+### 3. Start the development server
 
-```bash
+``` bash
 npm run dev
 ```
 
-Visit the local development server (typically `http://localhost:5173`).
+Open the local URL printed in your terminal. Vite commonly uses:
 
-### 3. Run Automated Tests
-
-```bash
-npx vitest run
+``` text
+http://localhost:5173
 ```
 
-### 4. Production Build
+### 4. Create a production build
 
-```bash
+``` bash
 npm run build
 npm run preview
 ```
 
----
+The build command checks and bundles the app for production. The preview
+command serves the generated build locally so you can check it before
+deployment.
 
-## 📁 Project Architecture
+## 🧪 Available Scripts
 
+  Command             Purpose
+  ------------------- --------------------------------------
+  `npm install`       Install project dependencies
+  `npm run dev`       Start the local development server
+  `npx vitest run`    Run the test suite once
+  `npm run build`     Build the production version
+  `npm run preview`   Preview the production build locally
+
+## 🧮 How Nutrition Targets Work
+
+MessMate uses the Mifflin--St Jeor equation to estimate BMR.
+
+**Male equation**
+
+``` text
+BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age (years) + 5
 ```
-messmate/
-├── src/
-│   ├── components/
-│   │   ├── AddFoodModal.tsx          # Multi-tab food selection & custom item creator
-│   │   ├── AnalyticsView.tsx         # Recharts intake trends & weight tracking
-│   │   ├── AppLayout.tsx             # Responsive header, bottom dock & view routing
-│   │   ├── BackupRestoreView.tsx     # CSV export & JSON backup/restore
-│   │   ├── CalorieBudgetCard.tsx     # Top priority live calorie-remaining bar & ring gauge
-│   │   ├── DateNavigator.tsx         # Date picker, prev/next & VIT mess date pills
-│   │   ├── DashboardView.tsx         # Hero greeting, budget card, macros & 4 meal cards
-│   │   ├── FoodDatabaseView.tsx      # Searchable, filterable Indian food library
-│   │   ├── FoodInsightsView.tsx      # Smart mess food swaps & protein rankings
-│   │   ├── HistoryView.tsx           # Monthly interactive calendar & past record inspector
-│   │   ├── MacronutrientBreakdown.tsx# Animated protein, carbs, fat & fibre bars
-│   │   ├── MealCard.tsx              # Interactive breakfast, lunch, snacks & dinner cards
-│   │   ├── OnboardingModal.tsx       # BMR, TDEE, & personalized target calculator wizard
-│   │   └── TodayMenuView.tsx         # Date-specific mess menu & 1-click meal logger
-│   ├── context/
-│   │   └── AppContext.tsx            # Global state, reactive totals, and IndexedDB sync
-│   ├── data/
-│   │   ├── foodDatabase.ts           # Standardized NIN IFCT Indian mess foods
-│   │   └── messMenus.ts              # Oct 12, 19, 20, 21, 22, 23, 24, 25 VIT mess menus
-│   ├── services/
-│   │   ├── dataIntegrity.test.ts     # Menu integrity and portion scaling test suite
-│   │   ├── nutritionCalculations.ts  # Mifflin-St Jeor BMR, TDEE & macro formulas
-│   │   ├── nutritionCalculations.test.ts # Vitest suite for calculations
-│   │   └── persistenceService.ts     # IndexedDB CRUD, schema, export/import
-│   ├── types/
-│   │   └── index.ts                  # TypeScript models and interfaces
-│   ├── App.tsx                       # Root application component
-│   ├── index.css                     # Tailwind v4 variables & glassmorphism utilities
-│   └── main.tsx                      # Vite React entry point
-├── package.json
-└── vite.config.ts
+
+**Female equation**
+
+``` text
+BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age (years) − 161
 ```
+
+Estimated maintenance calories are calculated as:
+
+``` text
+TDEE = BMR × activity factor
+```
+
+The app can then suggest a target based on the selected goal. These
+formulas are estimates and can differ from a person's actual energy
+needs. Food values also vary by recipe and serving size.
+
+## 🗄️ Data Storage and Backup
+
+MessMate is designed for browser-local storage rather than a hosted
+account database.
+
+1.  Log meals and update profile details in the app.
+2.  Export a CSV when you want to inspect records in a spreadsheet.
+3.  Create a JSON backup periodically.
+4.  Keep backup files in a safe location.
+5.  Test restoration with a backup copy before relying on it as your
+    only recovery method.
+
+Do not include sensitive personal information in public issue reports or
+screenshots.
+
+## ✅ Testing
+
+Run the automated tests with:
+
+``` bash
+npx vitest run
+```
+
+The project includes tests for nutrition calculations and data
+integrity. Run the tests after changing calculation formulas, portion
+handling, menu data, or persistence logic.
+
+## 🛣️ Roadmap
+
+Potential improvements for future versions:
+
+-   [ ] Add app screenshots and a short demo GIF.
+-   [ ] Publish a live demo.
+-   [ ] Add optional encrypted backup export.
+-   [ ] Add cross-device sync through a secure backend.
+-   [ ] Expand and validate the food database and mess-menu coverage.
+-   [ ] Add more automated tests for backup restoration and
+    historical-record integrity.
+
+## ⚠️ Disclaimer
+
+MessMate is an educational nutrition-tracking application. Calorie and
+nutrient values are estimates and should not be treated as medical
+advice. Individual needs vary. Consult a qualified healthcare
+professional or registered dietitian for personalized medical or
+nutrition guidance, especially if you are under 18 or have a medical
+condition.
+
+------------------------------------------------------------------------
+
+::: {align="center"}
+**Built to make everyday mess meals easier to track.** 🍽️
+:::
